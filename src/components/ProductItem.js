@@ -5,6 +5,11 @@ import styled from 'styled-components';
 import { selectableProductShelf, selectableProductGruop } from '../actions';
 import dropdown from '../assets/drop-down.svg';
 
+//FOR MOBILE
+let checkmobile = false;
+if(typeof window !== undefined){  
+    if(window.innerWidth < 500) checkmobile = true;
+}
 
 const ProductItem = ({ selectableProductShelf, selectableProductGruop, shelfs, product_groups, style, id, ean_plu, name, producer, wt_vol_pce, shelf_id, product_group_id }) => {
     const [shelfId, setShelfId] = useState(shelf_id)
@@ -41,9 +46,12 @@ const ProductItem = ({ selectableProductShelf, selectableProductGruop, shelfs, p
 
 const Row = styled.div`
     display: grid;
-    grid-template-columns: repeat(6,1fr);
-    grid-gap: 10px;
+    grid-template-columns: ${checkmobile ? 'repeat(3,1fr)' : 'repeat(6,1fr)'};
+    grid-gap: ${checkmobile ? '0px' : '10px'};
     border-bottom: 1px solid #DDDDDD;
+    justify-content: center;
+    align-items: center;
+    padding-top: ${checkmobile ? '10px' : '0px'};
 `;
 
 const Item = styled.div`
@@ -57,6 +65,7 @@ const Title = styled.p`
     font-size: 12px;
     line-height: 14px;
     color: #333333;
+    margin: 0px;
 `;
 
 const Select = styled.select`

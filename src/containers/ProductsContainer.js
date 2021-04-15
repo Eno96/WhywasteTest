@@ -6,6 +6,11 @@ import styled from 'styled-components';
 import AutoSizer from "react-virtualized-auto-sizer";
 import ProductItem from '../components/ProductItem'
 
+//FOR MOBILE
+let item_size = 45;
+if(typeof window !== undefined){  
+    if(window.innerWidth < 500) item_size = 70;
+}
 
 const Row = ({data, index, style }) => {
     return (
@@ -26,7 +31,7 @@ const ProductsContainer = ({ products }) => (
     <AutoSizer>
         { products.length > 0 ?
             ({ height, width }) => (
-                <List className="List" height={height} itemCount={products.length} itemData={products} itemSize={45} width={width}>
+                <List className="List" height={height} itemCount={products.length} itemData={products} itemSize={item_size} width={width}>
                     {Row} 
                 </List>
             )
@@ -52,7 +57,6 @@ const NoResults = () => {
 
 const Info = styled.div`
     border-bottom: 1px solid #DDDDDD;
-    /* margin: 10px 0px; */
     text-align: center;
     height: 45px;
 `;
