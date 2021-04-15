@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import { selectableProductShelf, selectableProductGruop } from '../actions';
 import dropdown from '../assets/drop-down.svg';
 
-//FOR MOBILE
+
 let checkmobile = false;
 if(typeof window !== undefined){  
-    if(window.innerWidth < 500) checkmobile = true;
+    if(window.innerWidth < 640) checkmobile = true;
 }
 
 const ProductItem = ({ selectableProductShelf, selectableProductGruop, shelfs, product_groups, style, id, ean_plu, name, producer, wt_vol_pce, shelf_id, product_group_id }) => {

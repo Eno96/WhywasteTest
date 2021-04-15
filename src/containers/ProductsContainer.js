@@ -9,7 +9,7 @@ import ProductItem from '../components/ProductItem'
 //FOR MOBILE
 let item_size = 45;
 if(typeof window !== undefined){  
-    if(window.innerWidth < 500) item_size = 70;
+    if(window.innerWidth < 640) item_size = 70;
 }
 
 const Row = ({data, index, style }) => {
