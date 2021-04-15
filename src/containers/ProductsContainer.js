@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { FixedSizeList as List } from "react-window";
+import styled from 'styled-components';
 import AutoSizer from "react-virtualized-auto-sizer";
 import ProductItem from '../components/ProductItem'
 
@@ -20,19 +21,53 @@ const Row = ({data, index, style }) => {
         />
     );
 }
-// RESPONZIVNOST
-// NO RESULTS FIND ROW !
 
 const ProductsContainer = ({ products }) => (
     <AutoSizer>
-        {({ height, width }) => (
-        <List className="List" height={height} itemCount={products.length} itemData={products} itemSize={45} width={width}>
-            {Row} 
-        </List>
-        )}
+        { products.length > 0 ?
+            ({ height, width }) => (
+                <List className="List" height={height} itemCount={products.length} itemData={products} itemSize={45} width={width}>
+                    {Row} 
+                </List>
+            )
+            :
+            ({ height, width }) => (
+                <List className="List" height={height} itemCount={1} itemSize={45} width={width}>
+                    {NoResults} 
+                </List>
+            )
+        }
+
     </AutoSizer>
 )
 
+const NoResults = () => {
+    return (
+        <Info>
+            <Title>No Result Found...</Title>
+        </Info>
+    );
+}
+
+
+const Info = styled.div`
+    border-bottom: 1px solid #DDDDDD;
+    /* margin: 10px 0px; */
+    text-align: center;
+    height: 45px;
+`;
+
+const Title = styled.span`
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 11px;
+    text-transform: uppercase;
+    color: #AAAAAA;
+    padding-top: 15px;
+    display: block;
+`;
 
 ProductsContainer.propTypes = {
     dataSet: PropTypes.shape({

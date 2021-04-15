@@ -3,7 +3,6 @@ import product_group from '../api/products'
 import shelf from '../api/products'
 
 
-
 /********************************************  
             GETTERS
 ********************************************/
@@ -24,8 +23,6 @@ export const getAllProducts = () => dispatch => {
   })
 }
 
-
-
 const receiveProductGroups = product_groups => ({
   type: "RECEIVE_PRODUCT_GROUPS",
   product_groups
@@ -36,11 +33,6 @@ export const getAllProductGroups = () => dispatch => {
     dispatch(receiveProductGroups(product_groups))
   })
 }
-
-
-
-
-
 
 const receiveShelfs = shelfs => ({
   type: "RECEIVE_SHELFS",
@@ -83,9 +75,6 @@ const selectablePShelf = (productId , shelfId) => ({
 export const selectableProductShelf = (productId , shelfId) => (dispatch, getState) => {
     dispatch(selectablePShelf(productId , shelfId))
 }
-
-
-
 
 const selectablePGruop = (product_id , productGroupId) => ({
   type: 'SELECTABLE_PRODUCT_GROUP',

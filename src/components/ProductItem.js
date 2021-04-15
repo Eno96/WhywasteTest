@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import styled from 'styled-components';
 import { selectableProductShelf, selectableProductGruop } from '../actions';
+import dropdown from '../assets/drop-down.svg';
 
 
 const ProductItem = ({ selectableProductShelf, selectableProductGruop, shelfs, product_groups, style, id, ean_plu, name, producer, wt_vol_pce, shelf_id, product_group_id }) => {
@@ -18,24 +20,72 @@ const ProductItem = ({ selectableProductShelf, selectableProductGruop, shelfs, p
     }
 
     return (
-    <div className="Row" style={style}>
-        <div><p>{ean_plu}</p></div> 
-        <div><p>{name}</p></div>
-        <div><p>{producer}</p></div>
-        <div><p>{wt_vol_pce}</p></div>
-        <div>
-            <select value={shelfId} className="selector" onChange={handleChangeShelf}>
-                { shelfs && shelfs.map((item , key) => <option key={key} value={item.id}>{item.name}</option>)}
-            </select>
-        </div>
-        <div>
-            <select value={productGroupId} className="selector" onChange={handleChangePGroup}>
-                { product_groups && product_groups.map((item , key) => <option key={key} value={item.id}>{item.name}</option>)}
-            </select>
-        </div>
-    </div>
+    <Row style={style}>
+        <Item><Title>{ean_plu}</Title></Item> 
+        <Item><Title>{name}</Title></Item>
+        <Item><Title>{producer}</Title></Item>
+        <Item><Title>{wt_vol_pce}</Title></Item>
+        <Item>
+            <Select value={shelfId} className="selector" onChange={handleChangeShelf}>
+                { shelfs && shelfs.map((item , key) => <Option key={key} value={item.id}>{item.name}</Option>)}
+            </Select>
+        </Item>
+        <Item>
+            <Select value={productGroupId} className="selector" onChange={handleChangePGroup}>
+                { product_groups && product_groups.map((item , key) => <Option key={key} value={item.id}>{item.name}</Option>)}
+            </Select>
+        </Item>
+    </Row>
     )
 }
+
+const Row = styled.div`
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-gap: 10px;
+    border-bottom: 1px solid #DDDDDD;
+`;
+
+const Item = styled.div`
+    padding-left: 10%;
+`;
+
+const Title = styled.p`
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #333333;
+`;
+
+const Select = styled.select`
+    outline: none;
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #333333;
+    width: 90%;
+    position: relative;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    margin: 12px 0px;
+    background: url(${dropdown}) no-repeat center right;
+`;
+
+const Option = styled.option`
+    background: #F1F2F2;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 7px;
+`;
+
+
 
 ProductItem.propTypes = {
     ean_plu: PropTypes.string,
