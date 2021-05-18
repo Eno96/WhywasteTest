@@ -1,1 +1,1 @@
-# React Test
+# React Redux Example
