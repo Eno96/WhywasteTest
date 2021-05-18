@@ -11,7 +11,7 @@ if(typeof window !== undefined){
     if(window.innerWidth < 640) checkmobile = true;
 }
 
-const ProductItem = ({ selectableProductShelf, selectableProductGruop, shelfs, product_groups, style, id, ean_plu, name, producer, wt_vol_pce, shelf_id, product_group_id }) => {
+const ProductItem = ({ selectableProductShelf, selectableProductGruop, product_groups, shelfs, style, id, ean_plu, name, producer, wt_vol_pce, shelf_id, product_group_id }) => {
     const [shelfId, setShelfId] = useState(shelf_id)
     const [productGroupId, setproductGroupId] = useState(product_group_id)
 
@@ -32,12 +32,12 @@ const ProductItem = ({ selectableProductShelf, selectableProductGruop, shelfs, p
         <Item><Title>{wt_vol_pce}</Title></Item>
         <Item>
             <Select value={shelfId} className="selector" onChange={handleChangeShelf}>
-                { shelfs && shelfs.map((item , key) => <Option key={key} value={item.id}>{item.name}</Option>)}
+                { shelfs.length > 0 && shelfs.map((item , key) => <Option key={key} value={item.id}>{item.name}</Option>)}
             </Select>
         </Item>
         <Item>
             <Select value={productGroupId} className="selector" onChange={handleChangePGroup}>
-                { product_groups && product_groups.map((item , key) => <Option key={key} value={item.id}>{item.name}</Option>)}
+                { product_groups.length > 0 && product_groups.map((item , key) => <Option key={key} value={item.id}>{item.name}</Option>)}
             </Select>
         </Item>
     </Row>

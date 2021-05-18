@@ -26,6 +26,7 @@ store.dispatch(getAllProducts())
 store.dispatch(getAllProductGroups())
 store.dispatch(getAllShelfs())
 
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

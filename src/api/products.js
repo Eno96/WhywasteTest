@@ -2,7 +2,7 @@ import _products from './products.json'
 import _productgroups from './product_groups.json'
 import _shelfs from './shelfs.json'
 
-const TIMEOUT = 100
+const TIMEOUT = 1
 
 export default {
   getProducts: (cb, timeout) => setTimeout(() => cb(_products), timeout || TIMEOUT),

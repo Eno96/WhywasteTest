@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 
-const byId = (state = {}, action) => {
+const byProducts = (state = {}, action) => {
   switch (action.type) {
     case "RECEIVE_PRODUCTS":
       const { products } = action
@@ -46,7 +46,7 @@ const byShelfs = (state = {}, action) => {
 }
 
 const rootReducer = combineReducers({
-    products: byId,
+    products: byProducts,
     product_groups: byPGroups,
     shelfs: byShelfs,
 })

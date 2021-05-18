@@ -9,17 +9,11 @@ import shelf from '../api/products'
 const receiveProducts = (products, product_groups, shelfs) => ({
   type: "RECEIVE_PRODUCTS",
   products,
-  product_groups,
-  shelfs,
 })
 
 export const getAllProducts = () => dispatch => {
   product.getProducts(products => {
-    product_group.getProductGroups(product_groups => {
-      shelf.getProductShelfs(shelfs => {
-        dispatch(receiveProducts(products, product_groups, shelfs))
-      })
-    })
+      dispatch(receiveProducts(products))
   })
 }
 

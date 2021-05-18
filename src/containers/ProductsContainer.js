@@ -42,7 +42,6 @@ const ProductsContainer = ({ products }) => (
                 </List>
             )
         }
-
     </AutoSizer>
 )
 
